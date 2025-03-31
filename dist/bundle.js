@@ -5348,6 +5348,6 @@ if (navbar) {
       navbar.classList.remove("is-blue-shadow");
       navbarLinks.forEach((link) => link.classList.remove("is-shrinked-nav"));
     }
-    lastScrollY = currentScrollYASD;
+    lastScrollY = currentScrollY;
   });
 }

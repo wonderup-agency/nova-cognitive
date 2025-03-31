@@ -1,6 +1,6 @@
 const navbar = document.querySelector("[data-component='navbar']");
 
-if (navbar) {
+if (!!navbar) {
   const navbarLinks = navbar.querySelectorAll("[data-navbar='link']");
   let lastScrollY = window.scrollY;
 
@@ -9,8 +9,6 @@ if (navbar) {
     navbar.removeAttribute('is-loading');
     navbar.style.transform = 'translateY(0)';
   }, 300);
-
-  
 
   //initial state
   navbarLinks.forEach((link) => link.classList.remove('is-shrinked-nav'));

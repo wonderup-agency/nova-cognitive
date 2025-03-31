@@ -1,3 +1,38 @@
+const navbar = document.querySelector("[data-component='navbar']");
+if (!!navbar) {
+  const navbarLinks = navbar.querySelectorAll("[data-navbar='link']");
+  let lastScrollY = window.scrollY;
+  navbar.style.transform = "translateY(-100%)";
+  setTimeout(() => {
+    navbar.removeAttribute("is-loading");
+    navbar.style.transform = "translateY(0)";
+  }, 300);
+  navbarLinks.forEach((link) => link.classList.remove("is-shrinked-nav"));
+  if (window.scrollY > 50) {
+    navbar.style.backgroundColor = "#000";
+    navbar.classList.add("is-blue-shadow");
+    navbarLinks.forEach((link) => link.classList.add("is-shrinked-nav"));
+  }
+  window.addEventListener("scroll", () => {
+    const currentScrollY = window.scrollY;
+    if (currentScrollY > lastScrollY && currentScrollY > 50) {
+      navbar.style.transform = "translateY(-100%)";
+      navbar.classList.remove("is-blue-shadow");
+    } else {
+      navbar.style.transform = "translateY(0)";
+      navbar.classList.add("is-blue-shadow");
+    }
+    if (currentScrollY > 50) {
+      navbar.style.backgroundColor = "#000";
+      navbarLinks.forEach((link) => link.classList.add("is-shrinked-nav"));
+    } else {
+      navbar.style.backgroundColor = "transparent";
+      navbar.classList.remove("is-blue-shadow");
+      navbarLinks.forEach((link) => link.classList.remove("is-shrinked-nav"));
+    }
+    lastScrollY = currentScrollY;
+  });
+}
 function _assertThisInitialized(self) {
   if (self === void 0) {
     throw new ReferenceError("this hasn't been initialised - super() hasn't been called");
@@ -5272,7 +5307,7 @@ Flip.version = "3.12.7";
 typeof window !== "undefined" && window.gsap && window.gsap.registerPlugin(Flip);
 gsapWithCSS.registerPlugin(Flip);
 const pricingSwitch = document.querySelector("[data-component='pricing-switch']");
-if (pricingSwitch) {
+if (!!pricingSwitch) {
   let displayPricing = function(periodicity) {
     if (periodicity === "monthly") {
       yearlyPrices.forEach((price) => {
@@ -5316,38 +5351,21 @@ if (pricingSwitch) {
     });
   });
 }
-const navbar = document.querySelector("[data-component='navbar']");
-if (navbar) {
-  const navbarLinks = navbar.querySelectorAll("[data-navbar='link']");
-  let lastScrollY = window.scrollY;
-  navbar.style.transform = "translateY(-100%)";
-  setTimeout(() => {
-    navbar.removeAttribute("is-loading");
-    navbar.style.transform = "translateY(0)";
-  }, 300);
-  navbarLinks.forEach((link) => link.classList.remove("is-shrinked-nav"));
-  if (window.scrollY > 50) {
-    navbar.style.backgroundColor = "#000";
-    navbar.classList.add("is-blue-shadow");
-    navbarLinks.forEach((link) => link.classList.add("is-shrinked-nav"));
-  }
-  window.addEventListener("scroll", () => {
-    const currentScrollY = window.scrollY;
-    if (currentScrollY > lastScrollY && currentScrollY > 50) {
-      navbar.style.transform = "translateY(-100%)";
-      navbar.classList.remove("is-blue-shadow");
-    } else {
-      navbar.style.transform = "translateY(0)";
-      navbar.classList.add("is-blue-shadow");
-    }
-    if (currentScrollY > 50) {
-      navbar.style.backgroundColor = "#000";
-      navbarLinks.forEach((link) => link.classList.add("is-shrinked-nav"));
-    } else {
-      navbar.style.backgroundColor = "transparent";
-      navbar.classList.remove("is-blue-shadow");
-      navbarLinks.forEach((link) => link.classList.remove("is-shrinked-nav"));
-    }
-    lastScrollY = currentScrollY;
+const copyToClipboard = document.querySelector("[data-component='copy-url']");
+if (!!copyToClipboard) {
+  const alert = copyToClipboard.querySelector("[data-copy-url='alert']");
+  alert.classList.remove("is-visible");
+  alert.setAttribute("aria-hidden", "true");
+  alert.style.cursor = "default";
+  const currentUrl = window.location.href;
+  copyToClipboard.addEventListener("click", () => {
+    navigator.clipboard.writeText(currentUrl).then(() => {
+      alert.classList.add("is-visible");
+      alert.setAttribute("aria-hidden", "false");
+      setTimeout(() => {
+        alert.classList.remove("is-visible");
+        alert.setAttribute("aria-hidden", "true");
+      }, 1e3);
+    });
   });
 }

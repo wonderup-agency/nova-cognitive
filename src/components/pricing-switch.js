@@ -4,7 +4,7 @@ gsap.registerPlugin(Flip);
 
 const pricingSwitch = document.querySelector("[data-component='pricing-switch']");
 
-if (pricingSwitch) {
+if (!!pricingSwitch) {
   const options = pricingSwitch.querySelectorAll("[data-switch='option']");
   const optionBackground = pricingSwitch.querySelector("[data-switch='bg']");
   const monthlyPrices = document.querySelectorAll("[data-periodicity='monthly']");

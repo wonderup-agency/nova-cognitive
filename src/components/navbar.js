@@ -43,6 +43,6 @@ if (navbar) {
       navbarLinks.forEach((link) => link.classList.remove('is-shrinked-nav'));
     }
 
-    lastScrollY = currentScrollY;
+    lastScrollY = currentScrollYASD;
   });
 }

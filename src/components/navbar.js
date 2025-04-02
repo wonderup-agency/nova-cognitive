@@ -1,6 +1,8 @@
 const navbar = document.querySelector("[data-component='navbar']");
 
 if (!!navbar) {
+  console.log("COMPONENT: NAVBAR");
+
   const navbarLinks = navbar.querySelectorAll("[data-navbar='link']");
   let lastScrollY = window.scrollY;
 

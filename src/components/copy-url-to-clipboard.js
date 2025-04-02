@@ -1,6 +1,8 @@
 const copyToClipboard = document.querySelector("[data-component='copy-url']");
 
 if (!!copyToClipboard) {
+  console.log("COMPONENT: COPY-TO-CLIPBOARD");
+
   const alert = copyToClipboard.querySelector("[data-copy-url='alert']");
 
   // initial state
